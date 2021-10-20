@@ -35,7 +35,7 @@ func getIpAndProcessId() (string, int, error) {
 
 // Connect to the server
 func Connect() {
-	client, err := rpc.DialHTTP("tcp", "localhost:1234")
+	client, err := rpc.DialHTTP("tcp", "10.0.4.204:1234")
 	if err != nil {
 		log.Fatal("Connection error: ", err)
 	}
@@ -66,6 +66,7 @@ func Connect() {
 		random := rand.Intn(max-min+1) + min
 		fmt.Printf("\n Process with ip %s and pid %d is sleeping for %d seconds", ip, pid, random)
 		time.Sleep(time.Duration(random) * time.Second)
+		body.Timestamp = time.Now().Unix()
 		err = client.Call("Tasks.SendHeartBeat", body, &reply)
 
 		if err != nil {

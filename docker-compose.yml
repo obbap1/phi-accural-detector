@@ -2,11 +2,13 @@ version: '3'
 services:
   follower:
     build: ./follower/.
+    image: localhost:5001/follower
     restart: always
     network_mode: host
 
   leader:
     build: ./leader/.
+    image: localhost:5001/leader
     restart: always
     ports:
       - '1234:1234'
