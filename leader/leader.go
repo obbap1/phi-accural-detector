@@ -144,7 +144,7 @@ func main() {
 					log.Fatal(err)
 				}
 				if decrementedConfidence := float64(confidence) - 0.1; decrementedConfidence <= failurePoint {
-					fmt.Printf("This process with ip %s and pid %s now has confidence %f which is below the failure point %f and will be marked as dead", v[Ip], v[Pid], decrementedConfidence, failurePoint)
+					fmt.Printf("This process with ip %s and pid %s now has confidence %f which is below or equal to the failure point %f and will be marked as dead", v[Ip], v[Pid], decrementedConfidence, failurePoint)
 					tableData = append(tableData[:index], tableData[index+1:]...)
 					totalConnected--
 				} else {
